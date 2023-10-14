@@ -72,8 +72,10 @@ async def test_register_cards():
     # THEN
     assert len(_account.cards) == card_amount + 1  # multiple cards register
     assert _account.cards[0].account == _account  # card association with acc
-    assert len(card_number) == 16  # length
-    assert any(char.isdigit() for char in card_number)  # only nums
+    assert len(card_number) == 16  # card number length
+    assert any(
+        char.isdigit() for char in card_number
+    )  # only numbers in card number
     assert len(set(_account.cards)) == card_amount + 1  # uniqueness
 
 
@@ -89,7 +91,6 @@ async def test_disable_card():
 
     # THEN
     assert isinstance(_card.state, DisabledState)
-    assert not isinstance(_card.state, ActiveState)
 
 
 @pytest.mark.asyncio
